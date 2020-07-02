@@ -7,8 +7,7 @@ __author__ = 'Makarkin Maxim Boricovich'
 
 # TODO: код пишем тут...
 age = int(input("Please input your age: "))
-if age < 0:
-    print("You are entering the wrong age. It cannot be less than 0.")
+if age < 0: print("You are entering the wrong age. It cannot be less than 0.")
 name = input("Please input you name: ")
 age = age - 18
 if age == 0:
