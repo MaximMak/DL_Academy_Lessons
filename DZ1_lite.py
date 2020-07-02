@@ -10,9 +10,14 @@ age = int(input("Please input your age: "))
 name = input("Please input you name: ")
 age = age - 18
 if age > 4:
-    print (name,"on",age,"year more the 18")
-elif age<0:
-    print (name,"on",-age,"years less the 18")
+    print(name, "on", age, "years more then 18")
+elif age == 0:
+    print(name, "your age is 18 years old")
+elif age >= 1 <= 4:
+    print(name, "on", age, "year more then 18")
+elif age < 0:
+    print(name, "on", -age, "years less then 18")
+
 
 # Задача-2: Исходные значения двух переменных запросить у пользователя.
 # Поменять значения переменных местами. Вывести новые значения на экран.
@@ -25,11 +30,11 @@ elif age<0:
 # TODO: код пишем тут...
 variable1 = input("Please input variable1: ")
 variable2 = input("Please input variable2: ")
-print("variables",variable1,variable2)
+print("variables", variable1, variable2)
 tmp = variable1
 variable1 = variable2
 variable2 = tmp
-print("Change variables",variable1,variable2)
+print("Change variables", variable1, variable2)
 # Or may this happens with this solution variable1,variable2 == variable2,variable1
 
 # Задача-3: Напишите программу, вычисляющую корни квадратного уравнения вида
@@ -48,10 +53,11 @@ c = float(input("Input your coefficients c = "))
 disc = b ** 2 - 4 * a * c
 
 if disc > 0:
-    positive = (-b + math.sqrt(disc)) / (2 * a)
-    negative = (-b - math.sqrt(disc)) / (2 * a)
-    print ("positive value", positive, "negative value", negative)
+    root1 = (-b + math.sqrt(disc)) / (2 * a)
+    root2 = (-b - math.sqrt(disc)) / (2 * a)
+    print("positive value", positive, "negative value", negative)
 elif disc == 0:
-    print("If discriminant equal 0")
+    root0 = -b / (2 * a)
+    print("If discriminant equal 0", root0)
 else:
     print("There`s no roots for negative value of the discriminant!")
