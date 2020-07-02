@@ -7,17 +7,16 @@ __author__ = 'Makarkin Maxim Boricovich'
 
 # TODO: код пишем тут...
 age = int(input("Please input your age: "))
+if age < 0:
+    print("You are entering the wrong age. It cannot be less than 0.")
 name = input("Please input you name: ")
 age = age - 18
-if age > 4:
-    print(name, "on", age, "years more then 18")
-elif age == 0:
+if age == 0:
     print(name, "your age is 18 years old")
-elif age >= 1 <= 4:
+elif age == 1:
     print(name, "on", age, "year more then 18")
-elif age < 0:
-    print(name, "on", -age, "years less then 18")
-
+else: age > 1
+    print(name, "on", age, "years more then 18")
 
 # Задача-2: Исходные значения двух переменных запросить у пользователя.
 # Поменять значения переменных местами. Вывести новые значения на экран.
