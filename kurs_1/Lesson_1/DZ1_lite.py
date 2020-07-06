@@ -11,13 +11,14 @@ if age < 0:
     print("You are entering the wrong age. It cannot be less than 0.")
 else:
     name = input("Please input you name: ")
-age = age - 18
+    age = age - 18
     if age == 0:
-        print(name, "your age is 18 years old")
-    elif age == 1:
-        print(name, "on", age, "year more then 18")
-    else: age > 1
-    print(name, "on", age, "years more then 18")
+        print(f'{name} your age is 18 years old')
+    elif -18 < age < 0:
+        print(f'{name} on {-age} year/s less then 18')
+    else:
+        print(f'{name} on {age} year/s more then 18')
+
 # Задача-2: Исходные значения двух переменных запросить у пользователя.
 # Поменять значения переменных местами. Вывести новые значения на экран.
 # Подсказка:
@@ -48,13 +49,14 @@ print("Lets find out the value of quadratic equation ax^2 + bx + c = 0:")
 a = float(input("Input your coefficients a = "))
 b = float(input("Input your coefficients b = "))
 c = float(input("Input your coefficients c = "))
+import math
 
 disc = b ** 2 - 4 * a * c
 
 if disc > 0:
     root1 = (-b + math.sqrt(disc)) / (2 * a)
     root2 = (-b - math.sqrt(disc)) / (2 * a)
-    print("positive value", positive, "negative value", negative)
+    print("positive value", root1, "negative value", root2)
 elif disc == 0:
     root0 = -b / (2 * a)
     print("If discriminant equal 0", root0)

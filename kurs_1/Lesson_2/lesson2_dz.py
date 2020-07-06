@@ -1,14 +1,16 @@
-
-__author__ = 'Ваши Ф.И.О.'
-
+__author__ = 'Makarkin Maxim Boricovich'
+import math
 # Задача-1: Запросите у пользователя его возраст.
 # Если ему есть 18 лет, выведите: "Доступ разрешен",
 # иначе "Извините, пользоваться данным ресурсом можно только с 18 лет"
-age = int(input("Please input your age: "))
-if age >= 18:
-    print("Доступ разрешен")
-elif age < 18:
+
+age = int(input('Please input your age: '))
+if age < 0:
+    print("You are entering the wrong age. It cannot be less than 0.")
+elif 0 < age < 18:
     print("Извините, пользоваться данным ресурсом можно только с 18 лет")
+else:
+    name = input("Доступ разрешен")
 
 # Задача-2: Напишите программу, которая спрашивает "Четные или нечетные?", в зависимости от ответа,
 # используя цикл с предусловием while или for in
@@ -25,6 +27,42 @@ elif age < 18:
 # Я не понимаю, что вы от меня хотите...
 
 
+while True:
+    input_data = input('Выберите четные или не четные числа вывести на экран: 1 для четных, 2 для не четных')
+    if not input_data.isnumeric():
+        print("Вы ввели не число. Попробуйте снова: ")
+    elif not 0 < int(input_data) <= 2:
+        print("Ваше число не диапазоне. Попробуйте снова")
+    else:
+        print("Число в правильном диапазоне.")
+        break
+input_data = int(input_data)
+if input_data == 1:
+    for i in range(21):
+       if int(i) % 2 == 0 and i != 0:
+          print(i, end=' ')
+elif input_data == 2:
+    for i in range(20):
+       if int(i) % 2 != 0 and i != 0:
+          print(i, end=' ')
+# Second way:
+while True:
+    input_data = input('Четные или Нечетные?')
+    if not input_data == input_data.lower() in ['четные', 'Четные']:
+        print('Я не понимаю, что вы от меня хотите... Попробуйте снова: ')
+    else:
+        print(f'Ура! ты выбрал {input_data}')
+        break
+if input_data.lower() in ['четные', 'Четные']:
+    for i in range(21):
+        if int(i) % 2 == 0 and i != 0:
+            print(i, end=' ')
+elif input_data.lower() in ['нечетные', 'Нечетные']:
+    for i in range(20):
+        if int(i) % 2 != 0 and i != 0:
+            print(i, end=' ')
+else:
+    print('Я не понимаю, что вы от меня хотите...')
 # Задача-3: Дано произвольное целое число, вывести самую большую цифру этого числа.
 # Например, дается x = 58375.
 # Нужно вывести максимальную цифру в данном числе, т.е. 8.
