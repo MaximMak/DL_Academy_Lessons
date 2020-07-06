@@ -7,14 +7,14 @@ __author__ = 'Makarkin Maxim Boricovich'
 
 # TODO: код пишем тут...
 age = int(input("Please input your age: "))
-if age < 0:
-    print("You are entering the wrong age. It cannot be less than 0.")
+if age <= 0:
+    print("You are entering the wrong age. It cannot be less than 1.")
 else:
     name = input("Please input you name: ")
     age = age - 18
     if age == 0:
         print(f'{name} your age is 18 years old')
-    elif -18 < age < 0:
+    elif -18 < age <= 0:
         print(f'{name} on {-age} year/s less then 18')
     else:
         print(f'{name} on {age} year/s more then 18')
