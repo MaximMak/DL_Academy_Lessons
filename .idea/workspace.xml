@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dd050c6-d182-4ca8-90d4-ec7c5681dda7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/DZ1_lite.py" beforeDir="false" afterPath="$PROJECT_DIR$/DZ1_lite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +69,7 @@
       <workItem from="1593774746421" duration="85000" />
       <workItem from="1593774881973" duration="749000" />
       <workItem from="1594018776180" duration="7929000" />
+      <workItem from="1594038974918" duration="9163000" />
     </task>
     <servers />
   </component>
@@ -100,5 +101,9 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="301" y="74" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1593680614421" />
+    <state x="463" y="180" key="search.everywhere.popup" timestamp="1594047940413">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="463" y="180" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1594047940413" />
   </component>
 </project>
