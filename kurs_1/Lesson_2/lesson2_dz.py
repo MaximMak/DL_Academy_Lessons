@@ -5,7 +5,7 @@ import math
 # иначе "Извините, пользоваться данным ресурсом можно только с 18 лет"
 
 age = int(input('Please input your age: '))
-if age < 0:
+if age <= 0:
     print("You are entering the wrong age. It cannot be less than 0.")
 elif 0 < age < 18:
     print("Извините, пользоваться данным ресурсом можно только с 18 лет")
@@ -48,7 +48,7 @@ elif input_data == 2:
 # Second way:
 while True:
     input_data = input('Четные или Нечетные?')
-    if not input_data == input_data.lower() in ['четные', 'Четные']:
+    if not input_data == input_data.lower() in ['четные', 'Четные', 'нечетные', 'Нечетные']:
         print('Я не понимаю, что вы от меня хотите... Попробуйте снова: ')
     else:
         print(f'Ура! ты выбрал {input_data}')
@@ -72,6 +72,29 @@ else:
 # * постарайтесь решить задачу с применением арифметики и цикла while;
 # * при желании и понимании решите задачу с применением цикла for.
 
+# Через встроенную функцию max.
 x = input('Введите произвольное целое число: ')
 list_of_digits = list(map(int, str(x)))
 print("Максимальная цифра во введенном числе : ", max(list_of_digits))
+
+# Через while.
+a = int(input())
+m = a%10
+if m == 9:
+    print(m)
+else:
+    a = a//10
+    while a > 0:
+        if a % 10 > m:
+            m = a % 10
+        a = a // 10
+    print(m)
+
+# Через for
+lst = int(input())
+lst = list(map(int, str(lst)))
+max = lst[0]
+for i in lst:
+    if i > max:
+        max = i
+print(max)

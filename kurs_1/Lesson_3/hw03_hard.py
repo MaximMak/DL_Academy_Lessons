@@ -4,6 +4,12 @@
 equation = 'y = -12x + 11111140.2121'
 x = 2.5
 # вычислите и выведите y
+name = equation.split(' ')
+first_name = str(name[2])
+name[2] = first_name[:-1]
+two_name = float(name[2]) * x + float(name[4])
+print(two_name)
+
 
 
 # Задание-2: Дата задана в виде строки формата 'dd.mm.yyyy'.
@@ -24,7 +30,24 @@ date = '01.22.1001'
 date = '1.12.1001'
 date = '-2.10.3001'
 
-
+my_date = input('Введите дату через точку: ')
+converted_date = my_date.split('.')
+converted_day = int(converted_date[0])
+converted_month = int(converted_date[1])
+converted_year = int(converted_date[2])
+long_month = [1, 3, 5, 7, 8, 10, 12]
+if len(converted_date[0]) != 2 or len(converted_date[1]) != 2 or len(converted_date[2]) != 4:
+    print('Не корректен формат даты')
+elif converted_day > 31 or converted_day < 1:
+    print('Введён не корректный день')
+elif converted_month > 12 or converted_month < 1:
+    print('Введён не корректный месяц')
+elif converted_year > 9999 or converted_year < 1:
+    print('Введён не корректный год')
+elif converted_month not in long_month and converted_day > 30:
+    print('Введён не корректный день')
+else:
+    print('Дата введена корректно: ', my_date)
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
 #
 # Вавилонцы решили построить удивительную башню —
@@ -54,3 +77,19 @@ date = '-2.10.3001'
 #
 # Вход: 11
 # Выход: 5 3
+inp_room = input('Введите номер комнаты: ')
+
+N = range(2000000000)
+while N > 0:
+    for current_floor in range(floor):
+     answer_floor += 1
+    for current_room in range(room):
+        N -= 1
+    if N == 0:
+        answer_room = current_room + 1
+    break
+    if N == 0:
+     break
+floor += 1
+room += 1
+print(answer_floor, answer_room)
