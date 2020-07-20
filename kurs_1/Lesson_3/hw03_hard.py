@@ -7,7 +7,7 @@ x = 2.5
 name = equation.split(' ')
 first_name = str(name[2])
 name[2] = first_name[:-1]
-two_name = float(name[2]) * x + float(name[4])
+two_name = float(na0me[2]) * x + float(name[4])
 print(two_name)
 
 
