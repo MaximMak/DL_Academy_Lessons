@@ -40,10 +40,14 @@ print(my_round(2.9999967, 5))
 # ибо False (если счастливый и несчастливый соответственно)
 
 def lucky_ticket(list, ticket_number):
-    t = map(int, ticket_number)
+    t = list(map(int, ticket_number))
     n = len(ticket_number) // 2
     return sum(t[:n]) == sum(t[n:])
 
 print(lucky_ticket(123006))
 print(lucky_ticket(12321))
 print(lucky_ticket(436751))
+
+
+
+
