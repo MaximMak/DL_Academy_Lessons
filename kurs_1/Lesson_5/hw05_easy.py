@@ -6,13 +6,12 @@
 # квадратами элементов исходного списка
 # [1, 2, 4, 0] --> [1, 4, 16, 0]
 
-<<<<<<< HEAD
 a = [1, 2, 3, 4, 5]
 for i in range(len(a)):
     i = i**2
     print(i)
     
-=======
+
 a = [1, 2, 4, 0]
 b = []
 for i in a:
@@ -20,7 +19,6 @@ for i in a:
     b.append[i]
 print(b)
 
->>>>>>> a2ff9adbbdfb35cbe3e1efcb67882eb7e6448f91
 # Задание-2:
 # Даны два списка фруктов.
 # Получить список фруктов, присутствующих в обоих исходных списках.
@@ -49,14 +47,12 @@ print(union_list)
 # + Элемент положительный
 # + Элемент не кратен 4
 
-<<<<<<< HEAD
 a = [7, 2, 13, 44, 5]
 b = []
 for i in a:
     i = i**2
     b.append(i)
 print(b)
-=======
 lst_generator = [i for i in range(-100, 100) if i > 0 and i % 3 == 0 and i % 4 != 0]
 print(lst_generator)
->>>>>>> a2ff9adbbdfb35cbe3e1efcb67882eb7e6448f91
+
