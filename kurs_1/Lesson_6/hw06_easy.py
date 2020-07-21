@@ -25,6 +25,28 @@ print("Среднее геометрическое = {:.2f}".format(c))
 # из которой запущен данный скрипт.
 # И второй скрипт, удаляющий эти папки.
 
+import os
+
+try:
+    for i in range(1, 10):
+        os.mkdir("dir_" + str(i))
+
+except:
+    print("Already exist")
+a = input("enter something ")
+print(a)
+
+try:
+    for i in range(1, 10):
+        os.rmdir("dir_" + str(i))
+except:
+    print("Already removed")
+
+# Задача-2:
+# Напишите скрипт отображающий папки текущей директории
+list = os.listdir()
+for i in list:
+    print(i)
 # Задача-3:
 # Напишите скрипт, отображающий папки текущей директории.
 
