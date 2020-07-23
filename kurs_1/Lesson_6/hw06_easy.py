@@ -1,6 +1,4 @@
-import os
-import shutil
-import sys
+import os, shutil, sys
 
 
 # Задача-1:
@@ -30,23 +28,37 @@ print("Среднее геометрическое = {:.2f}".format(c))
 # из которой запущен данный скрипт.
 # И второй скрипт, удаляющий эти папки.
 
-try:
-    for i in range(1, 10):
-        os.mkdir("dir_" + str(i))
 
-except:
-    print("Already exist")
-a = input("enter something ")
-print(a)
+def mkdir(dirname):
+    path = os.path.join(os.getcwd(), dirname)
+    try:
+        os.mkdir(path)
+        print(f'Папка {dirname} создана')
+    except FileExistsError:
+        print(f'Папка {dirname} уже существует')
 
-try:
-    for i in range(1, 10):
-        os.rmdir("dir_" + str(i))
-except:
-    print("Already removed")
+def rm(dirname):
+    path = os.path.join(os.getcwd(), dirname)
+    try:
+        os.rmdir(path)
+        if not os.path.isdir(path):
+            print(f'Папка {dirname} успешно удалена.')
+    except FileNotFoundError:
+        print(f'Папка {dirname} не найдена.')
+
 
 # Задача-3:
 # Напишите скрипт отображающий папки текущей директории.
+
+def lsdir(path):
+    list_dir = [dir for dir in os.listdir(path) if os.path.isdir(dir)]
+    list_dir.sort()
+    print(*list_dir)
+
+ls_path = os.getcwd()
+lsdir(ls_path)
+
+
 list = os.listdir()
 for i in list:
     print(i)
@@ -55,10 +67,12 @@ for i in list:
 # Задача-4:
 # Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
 
-def copy_file(first_file, backup_file):
-    shutil.copy(first_file, backup_file)
+
+def copyfile(filename):
+    newfile = filename + '.copy'
+    shutil.copy(filename, newfile)
+    if os.path.isfile(newfile):
+        print('Копия файла создана')
 
 
-first_file = sys.argv[0]
-backup_file = first_file + '.backup'
-copy_file(first_file, backup_file)
+copyfile(__file__)
