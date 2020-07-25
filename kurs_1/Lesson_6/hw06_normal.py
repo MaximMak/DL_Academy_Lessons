@@ -35,3 +35,47 @@ print("Среднее геометрическое = {:.2f}".format(c))
 # Для решения данной задачи используйте алгоритмы из задания easy,
 # оформленные в виде соответствующих функций,
 # и импортированные в данный файл из easy.py
+import os
+from hw06_easy \
+import lsdir, rm, mkdir
+
+
+def cd(path):
+    path = os.path.normpath(path)
+    try:
+        os.chdir(path)
+        if os.getcwd() == path:
+            print(f'Успешно перешёл. Текущая директория {os.getcwd()}')
+    except FileNotFoundError:
+        print(f'Папка {path} не найдена')
+
+
+while True:
+    print('-'*50)
+    print('[1] - Перейти в папку')
+    print('[2] - Просмотреть содержимое текущей папки')
+    print('[3] - Удалить папку')
+    print('[4] - Создать папку')
+    print('[q] - Выход')
+    print('-'*50)
+
+    do = input('Укажите номер действия: ').lower()
+
+    if do == '1':
+        dirname = input('Введите название папки: ')
+        cd(dirname)
+
+    if do == '2':
+        path = os.getcwd()
+        lsdir(path)
+
+    if do == '3':
+        dirname = input('Введите название папки: ')
+        rm(dirname)
+
+    if do == '4':
+        dirname = input('Введите название папки: ')
+        mkdir(dirname)
+
+    if do == 'q':
+        break

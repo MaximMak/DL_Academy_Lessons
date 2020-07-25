@@ -16,13 +16,14 @@ a = [1, 2, 4, 0]
 b = []
 for i in a:
     i = i**2
-    b.append[i]
+    b.append(i)
 print(b)
 
 # Задание-2:
 # Даны два списка фруктов.
 # Получить список фруктов, присутствующих в обоих исходных списках.
-a = ['Банан', 'дыня', 'r', 4, 'ee', 'ee']
+
+a = ['Банан', 'дыня', 'r', 4, 'ee', 'ee', 4]
 b = [4, 'дыня', 'ee', 3, 'Банан']
 c = []
 for i in a:
@@ -32,11 +33,22 @@ for i in a:
         if i == j:
             c.append(i)
             break
+print(c)
+
+a = ['Банан', 'дыня', 'r', 4, 'ee', 'ee', 4]
+b = [4, 'дыня', 'ee', 3, 'Банан']
+c = []
+
+for i in a:
+    for j in b:
+        if i == j:
+            c.append(i)
+            break
 
 print(c)
 
-list_1 = ['apple', 'orange', 'cucumber', 'potato']
-List_2 = ['apple', 'orange', ]
+list_1 = ['apple', 'orange', 'cucumber', 'potato', 'ee']
+List_2 = ['apple', 'orange', 'ee', 'ee']
 union_list = list(set(list_1) & set(List_2))
 print(union_list)
 
@@ -46,13 +58,14 @@ print(union_list)
 # + Элемент кратен 3
 # + Элемент положительный
 # + Элемент не кратен 4
+import random
 
-a = [7, 2, 13, 44, 5]
-b = []
-for i in a:
-    i = i**2
-    b.append(i)
-print(b)
-lst_generator = [i for i in range(-100, 100) if i > 0 and i % 3 == 0 and i % 4 != 0]
+a = [random.randint(-100, 100) for i in range(100)]
+
+sls = [i for i in a if i %3 == 0 and i > 0 and i % 4 != 0]
+print(sls)
+
+
+lst_generator = [i for i in [random.randint(-100, 100) for i in range(100)] if i > 0 and i % 3 == 0 and i % 4 != 0]
 print(lst_generator)
 
