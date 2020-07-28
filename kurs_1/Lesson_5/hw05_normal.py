@@ -25,7 +25,7 @@ def circledChars(line):
     w = []
     lowers = [y for y in range(len(line)) if (line[y].islower())]
     for i in range(0, len(lowers) - 1):
-        if ((lowers[i + 1] - lowers[i]) > 1):
+        if ((lowers[i + 2] - lowers[i]) > 2):
             tup = (line[lowers[i]], line[lowers[i + 1]])
             w.append(tup)
     return w
@@ -37,13 +37,11 @@ print(circledChars(line))
 import re
 # Вывести символы в нижнем регистре, которые находятся вокруг
 # 1 или более символов в верхнем регистре.
-pattern = r"([a-z]{1,10})|([a-z]{1,10})"
+pattern = r"(?=([a-z]{2})[A-Z]+([a-z]{2}))"
 result = re.findall(pattern, line)
 
 print("Решение с regexp:")
 print(result)
-
-pattern = r"(?=([a-z]{2})[A-Z]+([A-Z]{2}))"
 # Задание-2:
 # Вывести символы в верхнем регистре, слева от которых находятся
 # два символа в нижнем регистре, а справа - два символа в верхнем регистре.
@@ -68,6 +66,10 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm' \
          'JFaXiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQ' \
          'oiQzTYwZAiRwycdlHfyHNGmkNqSwXUrxGC'
 
+pattern2 = r"([a-z]{2})[A-Z]+([A-Z]{2})"
+result2 = re.findall(pattern2, line_2)
+
+print(f"Решение с regexp: {result2}")
 # Задание-3:
 # Напишите скрипт, заполняющий указанный файл (самостоятельно задайте имя файла)
 # произвольными целыми цифрами, в результате в файле должно быть
