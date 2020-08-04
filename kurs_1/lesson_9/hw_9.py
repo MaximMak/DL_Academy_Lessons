@@ -5,12 +5,10 @@ doc, tag, text = Doc().tagtext()
 
 with tag('html'):
     with tag('body'):
-        with tag('p', id = 'main'):
+        with tag('p', id='main'):
             text('some text in main paragrath!')
         with tag('a', href='/my-url'):
             text('link to url of your')
 
 result = doc.getvalue()
 
-
-class
