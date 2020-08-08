@@ -191,6 +191,6 @@ if __name__ == '__main__':
         if score == 1:
             print('You win')
             break
-        else:
+        elif score == 2:
             print('You lose')
             break
