@@ -1,17 +1,18 @@
 import socket
 import time
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Создает сокет TCP
-s.bind(('', 8888)) # присваивание поорта
-s.listen(5)# переходит в режим прослушки
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Создает сокет TCP
+server.bind(('', 8888)) # ссылаемся на localhost и присваивание порта
+server.listen(5)# переходит в режим прослушки
            # не более 5 запросов
 
 
 while True:
-    client, addr = s.accept()
-    print("Get acsses to conection from %s" % str(addr))
+    client, addr = server.accept()
+    print("Yor status is online".encode(UTG-8) % str(addr))
     timestr = time.ctime(time.time()) + '\n'
     client.send(timestr.encode('ascii'))
+    data = user_socket.recv(1024)
     client.close()
 
 
