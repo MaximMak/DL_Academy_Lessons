@@ -28,6 +28,10 @@ class sale_ad(models.Model):
     image = models.ImageField(upload_to='add_images/')
     date_pud = models.DateTimeField(default=timezone.now)
     date_edit = models.DateTimeField(default=timezone.now)
+    type_of_ad = models.TextField(max_length=20)
+    category = models.ForeignKey(max_length=20)
+
 
     def __str__(self):
         return 'Author {} date {}'.format(self.author.username, self.date_pud)
+
