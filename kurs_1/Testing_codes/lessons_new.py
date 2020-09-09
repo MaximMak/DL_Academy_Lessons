@@ -1,3 +1,6 @@
+import sqlite3
+
+
 # def duplicate_encode(word):
 #     iter_word = str(word)
 #     check_list = []
@@ -12,10 +15,12 @@
 #             i = ')'
 #             format_list.append(i)
 #     return '{}'.format(''.join(map(str, format_list)))
+#
+# def song_decoder(song):
+#    print(' '.join(song.replace('WUB', ' ').split()))
+#
+# song_decoder("AWUBWUBWUBBWUBWUBWUBC")
+#
+# #your code here
 
-def song_decoder(song):
-   print(' '.join(song.replace('WUB', ' ').split()))
-
-song_decoder("AWUBWUBWUBBWUBWUBWUBC")
-
-#your code here
+con=sqllite.connect()
