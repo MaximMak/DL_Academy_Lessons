@@ -31,29 +31,30 @@ class model_ad(models.Model):
     type_of_ad = models.OneToOneField(max_length=20, on_delete=models.CASCADE, related_name='model_ad_type')
     category = models.ForeignKey(max_length=10, on_delete=models.CASCADE, related_name='model_ad_type')
 
-
     def __str__(self):
         return 'Author: {} date: {} Category: {} Type: {}'.format(self.author.username, self.date_pud, self.category,
                                                                   self.type_of_ad)
 
 
-class model_ad_type(models.Model):
+class ad_type(models.Model):
     '''
-    Classes of ad`s.
+    Подразделения обьявлений
     '''
     sales = models.DecimalField(max_length=10, default=None)
     bay = models.DecimalField(max_length=10, default=None)
     rent = models.DecimalField(max_length=10, default=None)
     gifts = models.DecimalField(max_length=10, default=None)
 
-
     def __str__(self):
         return self
 
 
 class ad_category(models.Model):
+    '''
+    Категория обьявления
+    '''
     apartments = models.TextField(max_length=150)
     vehicles = models.TextField(max_length=150)
     land = models.DecimalField(max_length=3)
-    boats = models.TextField
-    houses = models.TextField
+    boats = models.TextField(max_length=150)
+    houses = models.TextField(max_length=150)
