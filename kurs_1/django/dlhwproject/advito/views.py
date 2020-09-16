@@ -12,3 +12,23 @@ def about(request):
 
 def support(request):
     return render(request, 'advito/Support.html')
+
+
+def create_ad(request):
+    return render(request, 'advito/Support.html')
+
+
+def edit_ad(request):
+    return render(request, 'advito/Support.html')
+
+
+def delete_ad(request):
+    return render(request, 'advito/Support.html')
+
+
+def add_to_favor(request):
+    return render(request, 'advito/Support.html')
+
+
+def view_ad_detail(request):
+    return render(request, 'advito/Support.html')

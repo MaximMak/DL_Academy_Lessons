@@ -30,7 +30,6 @@ class Profile(models.Model):
 class type_ad(models.Model):
     sales = models.TextField(max_length=7)
     bay = models.TextField(max_length=7)
-    rent = models.TextField(max_length=7)
 
 
 class ad_category(models.Model):
@@ -48,4 +47,4 @@ class model_ad(models.Model):
     description = models.TextField(max_length=1000)
     image = models.ImageField(upload_to=ad_img_path)
     date_pud = models.DateTimeField(default=timezone.now)
-    date_edit = models.DateTimeField(default=timezone.now)
+    favor = models.ManyToManyField(User, related_name='Favor', blank=True)
