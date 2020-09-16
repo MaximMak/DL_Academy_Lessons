@@ -19,7 +19,8 @@ class Profile(models.Model):
     birth_date = models.DateField('Date of birth', null=True, blank=True)
     about = models.TextField('About', max_length=500, blank=True)
     avatar = models.ImageField(upload_to=avatar_path, default=None)
-    sale_ad = models.ManyToManyField(User, related_name='ad', blank=True)
+    favor_ad = models.ManyToManyField(User, related_name='favorite', blank=True)
+    count_of_ad = models.DecimalField(max_digits=150, blank=True, decimal_places=3)
 
     def __str__(self):
         return str(self.user.username)
@@ -45,7 +46,6 @@ class Ad(models.Model):
     description = models.TextField(max_length=1000)
     image = models.ImageField(upload_to=ad_img_path)
     date_pud = models.DateTimeField(default=timezone.now)
-    favor = models.ManyToManyField(User, related_name='Favor', blank=True)
 
     def __str__(self):
         return 'Author {} date{}'.format(self.author.username, self.date_pub)

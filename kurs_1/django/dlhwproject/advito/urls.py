@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    path('about', views.about, name='about-us'),
+    path('about-us', views.about, name='about-us'),
     path('support', views.support, name='support'),
     path('ad/create/', views.create_ad, name='creating_the_ad'),
     path('posts<int:ad_id>/detail/', views.view_ad_detail, name='ad_detail'),
