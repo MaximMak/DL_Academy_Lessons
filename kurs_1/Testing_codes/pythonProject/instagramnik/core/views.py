@@ -28,7 +28,7 @@ def post_detail(request, post_id):
 
 def post_edit(request, post_id):
     post = Post.object.get(id=post_id)
-    response = "Deleting Author:{}| d0escription:{}".format(post.author, post.description)
+    response = "Deleting Author:{}| description:{}".format(post.author, post.description)
     return HttpResponse(response)
 
 
