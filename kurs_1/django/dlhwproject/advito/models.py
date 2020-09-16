@@ -15,9 +15,7 @@ class Profile(models.Model):
     '''
     Модель профиля пользователя
     '''
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name='user_profile'
-    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_profile')
     birth_date = models.DateField('Date of birth', null=True, blank=True)
     about = models.TextField('About', max_length=500, blank=True)
     avatar = models.ImageField(upload_to=avatar_path, default=None)
@@ -37,7 +35,7 @@ class ad_category(models.Model):
     vehicles = models.TextField(max_length=150)
 
 
-class model_ad(models.Model):
+class Ad(models.Model):
     '''
     Обьявления пользователя.
     '''
@@ -48,3 +46,10 @@ class model_ad(models.Model):
     image = models.ImageField(upload_to=ad_img_path)
     date_pud = models.DateTimeField(default=timezone.now)
     favor = models.ManyToManyField(User, related_name='Favor', blank=True)
+
+    def __str__(self):
+        return 'Author {} date{}'.format(self.author.username, self.date_pub)
+
+    @property
+    def get_favor(self):
+        return self.favor.count()

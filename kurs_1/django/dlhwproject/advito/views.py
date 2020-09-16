@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Ad
 from django.http import HttpResponse
 
 
@@ -14,21 +15,26 @@ def support(request):
     return render(request, 'advito/Support.html')
 
 
-def create_ad(request):
+def create_ad(request, ad_id):
+    ad = Ad.object.get(id=ad_id)
     return render(request, 'advito/Support.html')
 
 
-def edit_ad(request):
+def edit_ad(request, ad_id):
+    ad = Ad.object.get(id=ad_id)
     return render(request, 'advito/Support.html')
 
 
-def delete_ad(request):
+def delete_ad(request, ad_id):
+    ad = Ad.object.get(id=ad_id)
     return render(request, 'advito/Support.html')
 
 
-def add_to_favor(request):
+def add_to_favor(request, ad_id):
+    ad = Ad.object.get(id=ad_id)
     return render(request, 'advito/Support.html')
 
 
-def view_ad_detail(request):
+def view_ad_detail(request, ad_id):
+    ad = Ad.object.get(id=ad_id)
     return render(request, 'advito/Support.html')
