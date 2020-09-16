@@ -2,5 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def index_view(request):
-    return HttpResponse('Say Hello To My Little Friend!')
+def index(request):
+    return render(request, 'advito/index.html')
+
+
+def about(request):
+    return render(request, 'advito/about.html')
+
+
+def support(request):
+    return render(request, 'advito/Support.html')
