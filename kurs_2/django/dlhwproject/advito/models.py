@@ -29,7 +29,7 @@ class Category(MPTTModel):
     def __str__(self):
         return self.name
 
-    class MPTTMata:
+    class MPTTMeta:
         order_inspection_by = ['name']
 
 
@@ -80,7 +80,7 @@ class Ad(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     type_of_ad = models.ForeignKey(type_ad, related_name='type_of_ad', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    date = models.ForeignKey(DateAd, verbose_name="Срок", on_delete=models.CASCADE, default=timezone.now)
+    date = models.ForeignKey(DateAd, verbose_name="Срок размещения", on_delete=models.CASCADE, null=True)
     description = models.TextField("Текст обьявления", max_length=1000)
     subject = models.CharField("Тема обьявления", max_length=1000)
     images = models.ForeignKey(
