@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
+
 def avatar_path(instance, file_name):
     return 'user{0}/avatar/{1}'.format(instance.user.id, file_name)
 
@@ -20,7 +21,7 @@ class Profile(models.Model):
     about = models.TextField('About', max_length=500, blank=True)
     avatar = models.ImageField(upload_to=avatar_path, default=None)
     favor_ad = models.ManyToManyField(User, related_name='favorite', blank=True)
-    count_of_ad = models.DecimalField(max_digits=150, blank=True, decimal_places=3)
+    count_of_ad = models.DecimalField(max_digits=3, blank=True, decimal_places=2)
 
     def __str__(self):
         return str(self.user.username)
