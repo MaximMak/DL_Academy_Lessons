@@ -17,7 +17,7 @@ def get_path_upload_image(file):
     head = file.split('.')[0]
     if len(head) > 10:
         head = head[:10]
-    file_name = head + '_' + timezone.now().strftime("%h-%m-%s") + '.' + end_extention
+    file_name = head + '_' + time + '.' + end_extention
     return os.path.join('photos', '{}', '{}').format(time, file_name)
 
 

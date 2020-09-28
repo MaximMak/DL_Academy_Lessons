@@ -1,15 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.utils import timezone
 from mptt.models import MPTTModel, TreeForeignKey
 
 
-def avatar_path(instance, file_name):
-    return 'user{0}/avatar/{1}'.format(instance.user.id, file_name)
-
-
 def ad_img_path(instance, file_name):
-    return 'user{0}/ad_img/{1}'.format(instance.user.id, file_name)
+    return 'profiles/user{0}/ad_img/{1}'.format(instance.user.id, file_name)
 
 
 class Category(MPTTModel):
@@ -33,21 +30,7 @@ class Category(MPTTModel):
         order_inspection_by = ['name']
 
 
-class Profile(models.Model):
-    '''
-    Модель профиля пользователя
-    '''
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_profile')
-    birth_date = models.DateField('Date of birth', null=True, blank=True)
-    about = models.TextField('About', max_length=500, blank=True)
-    avatar = models.ImageField(upload_to=avatar_path, default=None)
-    profile_ad = models.ManyToManyField(User, related_name='My_ad', blank=True)
-
-    def __str__(self):
-        return str(self.user.username)
-
-
-class type_ad(models.Model):
+class FiltersAdvert(models.Model):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField("url", max_length=50, unique=True)
 
@@ -55,11 +38,11 @@ class type_ad(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Категория"
-        verbose_name_plural = "Категори"
+        verbose_name = "Фильтр"
+        verbose_name_plural = "Фильтры"
 
 
-class DateAd(models.Model):
+class AdvertDate(models.Model):
     """Срок для объявления"""
     name = models.CharField("Имя", max_length=50, unique=True)
     slug = models.SlugField("url", max_length=50, unique=True)
@@ -73,16 +56,16 @@ class DateAd(models.Model):
         ordering = ["id"]
 
 
-class Ad(models.Model):
+class Advert(models.Model):
     '''
     Обьявления пользователя.
     '''
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    type_of_ad = models.ForeignKey(type_ad, related_name='type_of_ad', on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    date = models.ForeignKey(DateAd, verbose_name="Срок размещения", on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(User, verbose_name="Автор объявления", on_delete=models.CASCADE)
+    filters = models.ForeignKey(FiltersAdvert, verbose_name="Фильтр", on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, verbose_name="Категории", on_delete=models.CASCADE)
+    date = models.ForeignKey(AdvertDate, verbose_name="Срок размещения", on_delete=models.CASCADE, null=True)
+    subject = models.CharField("Тема обьявления", max_length=200)
     description = models.TextField("Текст обьявления", max_length=1000)
-    subject = models.CharField("Тема обьявления", max_length=1000)
     images = models.ForeignKey(
         'gallery.Gallery',
         verbose_name="Изображения",
@@ -90,16 +73,34 @@ class Ad(models.Model):
         null=True,
         on_delete=models.SET_NULL
     )
+    file = models.FileField("Файл", upload_to="advito_file/", blank=True, null=True)
     price = models.DecimalField("Цена", max_digits=8, decimal_places=2)
-    date_pud = models.DateTimeField(default=timezone.now)
+    created = models.DateTimeField(default=timezone.now)
     edit_date = models.DateTimeField(default=timezone.now)
-    in_favor = models.ManyToManyField(User, related_name='favor_ad', blank=True)
     moderation = models.BooleanField("Модерация", default=False)
-    slug = models.SlugField("url", max_length=200, unique=True)
+    comments = models.TextField("Комментарии к объявлению", max_length=250)
+    slug = models.SlugField("url", max_length=200, unique=True, blank=True, null=True)
+    views_num = models.CharField(max_length=1000, blank=True)
 
     def __str__(self):
         return self.subject
 
+    def get_absolute_url(self):
+        return reverse('advert_detail', kwargs={"category": self.category.slug, "slug": self.slug})
+
     class Meta:
         verbose_name = "Обьявление"
         verbose_name_plural = "Обьявления"
+
+
+class Comments(models.Model):
+    """
+    Комментарии к обьявлению
+    """
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    in_advert = models.ForeignKey(Advert, related_name='Advert_comments', on_delete=models.CASCADE)
+    text = models.TextField(max_length=250, blank=False)
+    date_publish = models.TimeField(default=timezone.now)
+
+    def __str__(self):
+        return "{0}: {1}".format(self.author, self.text[:10] + "...")
