@@ -32,29 +32,29 @@ def index(request):
 def about(request):
     return render(request, 'advito/about.html')
 
-
-def support(request):
-    return render(request, 'advito/Support.html')
-
-
-def create_ad(request, advert_id):
-    advert = Advert.object.get(id=advert_id)
-    return render(request, 'advito/create.html')
-
-
-def edit_ad(request, advert_id):
-    ad = Advert.object.get(id=advert_id)
-    return render(request, 'advito/edit.html')
-
-
-def DeletAdvert(request, advert_id):
-    ad = Advert.object.get(id=advert_id)
-    return render(request, 'advito/delete.html')
-
-
-def add_to_favor(request, ad_id):
-    ad = Advert.object.get(id=ad_id)
-    return render(request, 'advito/Support.html')
+#
+# def support(request):
+#     return render(request, 'advito/Support.html')
+#
+#
+# def create_ad(request, advert_id):
+#     advert = Advert.object.get(id=advert_id)
+#     return render(request, 'advito/create.html')
+#
+#
+# def edit_ad(request, advert_id):
+#     ad = Advert.object.get(id=advert_id)
+#     return render(request, 'advito/edit.html')
+#
+#
+# def DeletAdvert(request, advert_id):
+#     ad = Advert.object.get(id=advert_id)
+#     return render(request, 'advito/delete.html')
+#
+#
+# def add_to_favor(request, ad_id):
+#     ad = Advert.object.get(id=ad_id)
+#     return render(request, 'advito/Support.html')
 
 
 

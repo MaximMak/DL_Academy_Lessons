@@ -6,7 +6,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 
 def ad_img_path(instance, file_name):
-    return 'profiles/user{0}/ad_img/{1}'.format(instance.user.id, file_name)
+    return 'profile/user{0}/ad_img/{1}'.format(instance.user.id, file_name)
 
 
 class Category(MPTTModel):
@@ -74,7 +74,7 @@ class Advert(models.Model):
         on_delete=models.SET_NULL
     )
     file = models.FileField("Файл", upload_to="advito_file/", blank=True, null=True)
-    price = models.DecimalField("Цена", max_digits=8, decimal_places=2)
+    price = models.DecimalField("Цена", max_digits=20, decimal_places=2)
     created = models.DateTimeField(default=timezone.now)
     edit_date = models.DateTimeField(default=timezone.now)
     moderation = models.BooleanField("Модерация", default=False)

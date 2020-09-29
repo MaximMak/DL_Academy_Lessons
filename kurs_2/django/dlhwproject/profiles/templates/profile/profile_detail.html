@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Welcome to you`r profile {{ profile.first_name }}</h3>
+    {% if profile.avatar %}
+        <p><img src="{{ profile.avatar.url}}" alt="None"></p>
+        <p>{{ profile.email_two }}</p>
+        <p>{{ profile.phone }}</p>
+        <p>{{ profile.first_name }}</p>
+        <p>{{ profile.last_name }}</p>
+{% endblock content %}

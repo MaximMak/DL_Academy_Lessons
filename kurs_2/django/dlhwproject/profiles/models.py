@@ -6,7 +6,7 @@ from django.urls import reverse
 
 
 def avatar_path(instance, file_name):
-    return 'profiles{0}/avatar/{1}'.format(instance.user.id, file_name)
+    return 'profile{0}/avatar/{1}'.format(instance.user.id, file_name)
 
 
 class Profile(models.Model):
@@ -16,23 +16,25 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_profile')
     birth_date = models.DateField('Дата рождения', null=True, blank=True)
     about = models.TextField('О себе', max_length=500, blank=True)
-    avatar = models.ImageField('Аватар', upload_to=avatar_path, default=None)
-    email_to = models.EmailField('Поля доп мыла')
+    avatar = models.ImageField('Аватар', upload_to=avatar_path, blank=True, null=True)
+    email_two = models.EmailField('Поля доп мыла')
     phone = models.CharField('Поле для телефона', max_length=25)
     first_name = models.CharField('Имя', max_length=50)
     last_name = models.CharField('Фамилия', max_length=50)
-    profile_ad = models.ManyToManyField(User, related_name='My_ad', blank=True)
+    # profile_ad = models.ManyToManyField(Advert, related_name='My_ad', blank=True)
+    slug = models.SlugField('url', max_length=50, default='')
     # TODO address and GEO base
 
     def __str__(self):
         return str(self.user.username)
 
-    # def get_absolute_url(self):
-    #     return reverse()
+    def get_absolute_url(self):
+        return reverse("profile-detail", kwargs={'name': self.user.username})
 
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профиля'
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -40,8 +42,9 @@ def create_user_profile(sender, instance, created, **kwargs):
     Создание профиля пользователя при регистрации
     '''
     if created:
-        Profile.object.create(user=instance) #, id=instance.id)
+        Profile.objects.create(user=instance)
+
 
 @receiver
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save
+    instance.profile.save()
