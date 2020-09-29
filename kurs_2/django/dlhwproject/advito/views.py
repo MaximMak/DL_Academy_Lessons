@@ -23,8 +23,8 @@ class AdvertDetail(DetailView):
 
 
 def index(request):
-    advert_queryset = Advert.object.annotate(views_num=sum('views')).ordefby('-views_nums')[:7]
-    output = ["id{}|description{}\n".format(Advert.id, Advert.description) for Advert in advert_queryset]
+    # advert_queryset = Advert.object.annotate(views_num=sum('views')).ordefby('-views_nums')[:7]
+    # output = ["id{}|description{}\n".format(Advert.id, Advert.description) for Advert in advert_queryset]
     return render(request, 'advito/index.html')
 
 

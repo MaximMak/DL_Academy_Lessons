@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import F
 from django.urls import reverse
 from django.utils import timezone
 from mptt.models import MPTTModel, TreeForeignKey
@@ -71,7 +72,7 @@ class Advert(models.Model):
         verbose_name="Изображения",
         blank=True,
         null=True,
-        on_delete=models.SET_NULL
+        on_delete=models.CASCADE
     )
     file = models.FileField("Файл", upload_to="advito_file/", blank=True, null=True)
     price = models.DecimalField("Цена", max_digits=20, decimal_places=2)
@@ -80,7 +81,12 @@ class Advert(models.Model):
     moderation = models.BooleanField("Модерация", default=False)
     comments = models.TextField("Комментарии к объявлению", max_length=250)
     slug = models.SlugField("url", max_length=200, unique=True, blank=True, null=True)
-    views_num = models.CharField(max_length=1000, blank=True)
+    views_num = models.PositiveIntegerField(max_length=1000, blank=True, null=True)
+
+    def coun_views_num(self):
+        Advert.objects.filter(pk=Advert.pk).update(views=F('views_num') + 1)
+        Advert.views_num += 1
+
 
     def __str__(self):
         return self.subject

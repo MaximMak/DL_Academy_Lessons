@@ -1,8 +1,6 @@
 import os
 
-# from PIL import Image
 from django.db import models
-from datetime import datetime
 
 from django.utils import timezone
 
@@ -12,13 +10,14 @@ def get_path_upload_image(file):
     make path of uploaded file shorter and return it
     in following format: (media)/profile_pics/user_1/myphoto_2018-12-2.png
     """
-    time = timezone.now().strftime("%Y-%m-%d")
+    date = timezone.now().strftime("%Y-%m-%d")
+    time = timezone.now().strftime("%H-%M-%S")
     end_extention = file.split('.')[1]
     head = file.split('.')[0]
     if len(head) > 10:
         head = head[:10]
     file_name = head + '_' + time + '.' + end_extention
-    return os.path.join('photos', '{}', '{}').format(time, file_name)
+    return os.path.join('photos', '{}', '{}').format(date, file_name)
 
 
 class Photo(models.Model):
