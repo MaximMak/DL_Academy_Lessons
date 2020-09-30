@@ -8,11 +8,11 @@ from django.contrib import admin
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.authtoken')),
+    # path('auth/', include('djoser.urls.authtoken')),
     path('api-auth/', include('rest_framework.urls')),
     path('profile/', include("backend.profiles.urls")),
     path('search/', include("backend.search.urls")),
-    path('', include("backend.callboard.urls")),
+    path('', include("backend.advito.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
