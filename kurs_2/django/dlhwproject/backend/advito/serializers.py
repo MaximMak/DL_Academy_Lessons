@@ -4,45 +4,69 @@ from ..gallery.serializers import GallerySerial
 from .models import *
 
 
-class CategorySerial(serializers.ModelSerializer):
-    """
-    Для вывода категорий
-    """
-
+class CategorySer(serializers.ModelSerializer):
+    """Для вывода категорий"""
     class Meta:
         model = Category
         fields = ("name", )
 
 
-class FiltersSerial(serializers.ModelSerializer):
-    """
-    Для вывода категорий
-    """
-
+class FilterAdvertSer(serializers.ModelSerializer):
+    """Для вывода фильтров"""
     class Meta:
         model = FiltersAdvert
         fields = ("name", )
 
 
-class AdvertListSerial(serializers.ModelSerializer):
+class AdvertListSer(serializers.ModelSerializer):
     """Для вывода списка объявлений"""
-    category = CategorySerial()
-    filters = FiltersSerial()
+    category = CategorySer()
+    filters = FilterAdvertSer()
     images = GallerySerial(read_only=True)
 
     class Meta:
         model = Advert
-        fields = ("id", "category", "filters", "subject", "images",
-                  "price", "created", "slug")
+        fields = ("id", "category", "filters", "subject", "images", "price", "created", "slug")
 
 
-class AdvertDetailSerial(serializers.ModelSerializer):
+class AdvertDetailSer(serializers.ModelSerializer):
     """Для вывода полного объявления"""
-    category = CategorySerial()
-    filters = FiltersSerial()
+    category = CategorySer()
+    filters = FilterAdvertSer()
     images = GallerySerial(read_only=True)
 
     class Meta:
         model = Advert
-        fields = ("category", "filters", "subject", "description",
-                  "images", "file", "price", "created", "user")
+        fields = (
+            "category",
+            "filters",
+            "subject",
+            "description",
+            "images",
+            "file",
+            "price",
+            "created",
+            "user"
+        )
+
+
+class AdvertCreateSer(serializers.ModelSerializer):
+    """Добавление объявления"""
+    #images = GallerySer()
+
+    class Meta:
+        model = Advert
+        fields = (
+            "category",
+            "filters",
+            "date",
+            "subject",
+            "description",
+            "price",
+            "images"
+        )
+
+    def create(self, request):
+        request["user"] = self.context['request'].user
+        advert = Advert.objects.create(**request)
+        return advert
