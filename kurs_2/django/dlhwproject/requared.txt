@@ -1,0 +1,13 @@
+django-cors-headers
+django-js-asset
+django-mptt
+django-templated-mail
+djangorestframework
+djangorestframework-jsonapi
+djoser
+inflection
+permission
+Pillow
+pytz
+six
+sqlparse
