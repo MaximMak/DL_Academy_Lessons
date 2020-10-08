@@ -5,21 +5,29 @@ from .models import *
 
 
 class CategorySer(serializers.ModelSerializer):
-    """Для вывода категорий"""
+    """
+    Для вывода категорий
+    """
+
     class Meta:
         model = Category
-        fields = ("name", )
+        fields = ("name",)
 
 
 class FilterAdvertSer(serializers.ModelSerializer):
-    """Для вывода фильтров"""
+    """
+    Для вывода фильтров
+    """
+
     class Meta:
         model = FiltersAdvert
-        fields = ("name", )
+        fields = ("name",)
 
 
 class AdvertListSer(serializers.ModelSerializer):
-    """Для вывода списка объявлений"""
+    """
+    Для вывода списка объявлений
+    """
     category = CategorySer()
     filters = FilterAdvertSer()
     images = GallerySerial(read_only=True)
@@ -30,7 +38,9 @@ class AdvertListSer(serializers.ModelSerializer):
 
 
 class AdvertDetailSer(serializers.ModelSerializer):
-    """Для вывода полного объявления"""
+    """
+    Для вывода полного объявления
+    """
     category = CategorySer()
     filters = FilterAdvertSer()
     images = GallerySerial(read_only=True)
@@ -51,8 +61,9 @@ class AdvertDetailSer(serializers.ModelSerializer):
 
 
 class AdvertCreateSer(serializers.ModelSerializer):
-    """Добавление объявления"""
-    #images = GallerySer()
+    """
+    Добавление объявления
+    """
 
     class Meta:
         model = Advert

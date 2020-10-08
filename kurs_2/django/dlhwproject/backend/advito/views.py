@@ -1,7 +1,7 @@
 from rest_framework import generics, permissions
 
 from .models import Advert
-from .serializers import AdvertListSerial, AdvertDetailSerial
+from .serializers import AdvertListSer, AdvertDetailSer
 
 
 class AdvertList(generics.ListAPIView):
@@ -10,7 +10,7 @@ class AdvertList(generics.ListAPIView):
     '''
     permission_classes = [permissions.AllowAny]
     queryset = Advert.objects.all()
-    serializer_class = AdvertListSerial
+    serializer_class = AdvertListSer
     # template_name = 'advito/advert_list.html'
 
 
@@ -22,7 +22,7 @@ class AdvertDetail(generics.RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = Advert.objects.all()
     lookup_field = 'slug'
-    serializer_class = AdvertListSerial
+    serializer_class = AdvertListSer
     #
     # model = Advert
     # context_object_name = 'advert'
