@@ -11,7 +11,7 @@ class AdvertList(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = Advert.objects.all()
     serializer_class = AdvertListSer
-    # template_name = 'advito/advert_list.html'
+    # template_name = 'profiles/advert_list.html'
 
 
 class AdvertDetail(generics.RetrieveAPIView):
@@ -26,42 +26,42 @@ class AdvertDetail(generics.RetrieveAPIView):
     #
     # model = Advert
     # context_object_name = 'advert'
-    # template_name = 'advito/advert_detail.html'
+    # template_name = 'profiles/advert_detail.html'
 
 
 # def index(request):
 #     # advert_queryset = Advert.object.annotate(views_num=sum('views')).ordefby('-views_nums')[:7]
 #     # output = ["id{}|description{}\n".format(Advert.id, Advert.description) for Advert in advert_queryset]
-#     return render(request, 'advito/index.html')
+#     return render(request, 'profiles/index.html')
 #
 #
 #
 # def about(request):
-#     return render(request, 'advito/about.html')
+#     return render(request, 'profiles/about.html')
 #
 # #
 # def support(request):
-#     return render(request, 'advito/Support.html')
+#     return render(request, 'profiles/Support.html')
 # #
 #
 # def create_ad(request, advert_id):
 #     advert = Advert.object.get(id=advert_id)
-#     return render(request, 'advito/create.html')
+#     return render(request, 'profiles/create.html')
 #
 #
 # def edit_ad(request, advert_id):
 #     ad = Advert.object.get(id=advert_id)
-#     return render(request, 'advito/edit.html')
+#     return render(request, 'profiles/edit.html')
 #
 #
 # def DeletAdvert(request, advert_id):
 #     ad = Advert.object.get(id=advert_id)
-#     return render(request, 'advito/delete.html')
+#     return render(request, 'profiles/delete.html')
 #
 #
 # def add_to_favor(request, ad_id):
 #     ad = Advert.object.get(id=ad_id)
-#     return render(request, 'advito/Support.html')
+#     return render(request, 'profiles/Support.html')
 
 
 

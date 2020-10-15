@@ -44,9 +44,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
 
-    'backend.advito',
-    'backend.gallery',
-    'backend.profiles'
+    'profiles.profiles',
+    'profiles.gallery',
+    'profiles.profiles'
 ]
 
 MIDDLEWARE = [

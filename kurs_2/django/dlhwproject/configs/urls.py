@@ -8,8 +8,8 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('api-auth/', include('rest_framework.urls')),
-    path('profile/', include("backend.profiles.urls")),
-    path('', include('backend.advito.urls')),
+    path('profiles/', include("profiles.profiles.urls")),
+    path('', include('profiles.profiles.urls')),
 
 ]
 

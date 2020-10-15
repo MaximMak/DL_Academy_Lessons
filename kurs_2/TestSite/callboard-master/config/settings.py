@@ -44,10 +44,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
 
-    'backend.callboard',
-    'backend.gallery',
-    'backend.profiles',
-    'backend.search',
+    'profiles.callboard',
+    'profiles.gallery',
+    'profiles.profiles',
+    'profiles.search',
 
 ]
 

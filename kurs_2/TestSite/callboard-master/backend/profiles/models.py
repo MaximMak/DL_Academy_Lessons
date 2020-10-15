@@ -8,7 +8,7 @@ from django.urls import reverse
 class Profile(models.Model):
     """Модель профиля пользователя"""
     user = models.OneToOneField(User, verbose_name="Пользователь", on_delete=models.CASCADE)
-    avatar = models.ImageField("Аватар", upload_to="profile/", blank=True, null=True)
+    avatar = models.ImageField("Аватар", upload_to="profiles/", blank=True, null=True)
     email_two = models.EmailField("Доп. email")
     phone = models.CharField("Телефон", max_length=25)
     first_name = models.CharField("Имя", max_length=50)
@@ -24,7 +24,7 @@ class Profile(models.Model):
     #     self.slug = "{}{}".format(self.user_id, self.first_name)
 
     # def get_absolute_url(self):
-    #     return reverse("profile-detail", kwargs={"slug": self.user.username})
+    #     return reverse("profiles-detail", kwargs={"slug": self.user.username})
 
     class Meta:
         verbose_name = "Профиль"
