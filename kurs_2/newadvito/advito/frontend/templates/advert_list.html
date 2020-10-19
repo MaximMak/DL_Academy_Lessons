@@ -6,11 +6,13 @@
 
 {% block content %}
     {% for advert in object_list %}
-        <h1>ПРИВЕТ!</h1>
-        <a href="{{ Advert.get_absolute_url }}"> <h2>{{ Advert.subject }}</h2> </a>
-        <p>{{ Advert.filters }}</p>
-        <p>{{ Advert.price }}</p>
-        <p>{{ Advert.created }}</p>
+        <a href="{{ advert.get_absolute_url }}">
+            <h2>{{ advert.subject }}</h2>
+        </a>
+        <h1>adfhd</h1>
+        <p>{{ advert.filters }}</p>
+        <p>{{ advert.price }}</p>
+        <p>{{ advert.created }}</p>
         <hr>
     {% endfor %}
 {% endblock content%}}

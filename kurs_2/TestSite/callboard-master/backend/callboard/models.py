@@ -62,7 +62,6 @@ class Advert(models.Model):
     date = models.ForeignKey(DateAdvert, verbose_name="Срок", on_delete=models.CASCADE)
     subject = models.CharField("Тема", max_length=200)
     description = models.TextField("Объявление", max_length=10000)
-    # TODO загрузка N изображений
     images = models.ForeignKey(
         'gallery.Gallery',
         verbose_name="Изображения",

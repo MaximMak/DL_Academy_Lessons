@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from django.forms import models
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -19,9 +20,8 @@ class AdvertDetail(DetailView):
     '''
     Детальный просмотр обьявленя
     '''
-
     model = Advert
-    queryset = Advert.objects.all()
+    context_object_name = 'advert_detail'
     template_name = 'advert_detail.html'
 
 
@@ -29,10 +29,14 @@ def index_view(request):
     return render(request, 'index.html')
 
 
-def index(request):
-    # advert_queryset = Advert.object.annotate(views_num=sum('views')).ordefby('-views_nums')[:7]
-    # output = ["id{}|description{}\n".format(Advert.id, Advert.description) for Advert in advert_queryset]
-    return render(request, 'index.html')
+class IndexView(ListView):
+    model = Advert
+    template_name = "index.html"
+    context_object_name = "popular_adverts"
+
+    # def get_queryset(self):
+    #     return models.Post.objects.annotate(like_nums=Sum('views_num')).order_by('-views_num')[:10]
+
 
 def about(request):
     return render(request, 'profiles/about.html')

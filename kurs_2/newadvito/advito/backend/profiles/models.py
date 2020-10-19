@@ -6,7 +6,7 @@ from django.urls import reverse
 
 
 def avatar_path(instance, file_name):
-    return 'profiles{0}/avatar/{1}'.format(instance.user.id, file_name)
+    return 'profiles/profile{0}/avatar/{1}'.format(instance.user.id, file_name)
 
 
 class Profile(models.Model):
