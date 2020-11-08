@@ -77,9 +77,9 @@ class Advert(models.Model):
     created = models.DateTimeField(default=timezone.now)
     edit_date = models.DateTimeField(default=timezone.now)
     moderation = models.BooleanField("Модерация", default=False)
-    # comments = models.TextField("Комментарии к объявлению", max_length=250)
+    # comments = models.TextField("Комментарии к объявлению", max_length=250, blank=True, null=True)
     slug = models.SlugField("url", max_length=200, unique=True, blank=True, null=True)
-    in_favorite = models.ManyToManyField(User, related_name='favorite_posts', blank=True)
+    # in_favorite = models.ManyToManyField(User, related_name='favorite_posts', blank=True)
     views_num = models.PositiveIntegerField(blank=True, null=True)
 
     def views_num_count(self):

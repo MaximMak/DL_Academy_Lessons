@@ -38,15 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'backend.advito',
+    'backend.profiles',
+    'backend.gallery',
+    'backend.search',
+
     'mptt',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
-
-    'profiles.profiles',
-    'profiles.gallery',
-    'profiles.profiles'
 ]
 
 MIDDLEWARE = [

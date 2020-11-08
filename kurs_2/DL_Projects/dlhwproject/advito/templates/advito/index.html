@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Доска обьявлений</title>
+</head>
+<h1>Популярные обьявления</h1>
+<p>Welcome to our free adverts site!</p>
+<body>
+Pop adverts
+{% if adverts %}
+<ul>
+    {% for advert in adverts %}
+    <li>
+        <a href="{% url 'advert_detail' advert.id %}">
+            <p>{{ advert.author }}</p>
+            <p>{{ advert.pub_date }}</p>
+            <p><img src="{{ advert.images.url }}" alt="posts img" width="250px"></p>
+            <p>{{ advert.description }}</p>
+        </a>
+        <p>Likes: {{ advert.likes.count }}</p>
+        <form method="post" action="{% url 'advert_like' advert.id %}">
+            {% csrf_token %}
+            <button type="submit">Like</button>
+        </form>
+    </li>
+    {% endfor adverts %}
+</ul>
+{% endif %}
+<!--    {% for advert in adverts %}-->
+<!--        <a href="{% url 'advert_detail' advert.id %}">-->
+<!--            <p>{{ advert }}</p>-->
+<!--        </a>-->
+<!--    {%endfor%}-->
+</body>
+</html>

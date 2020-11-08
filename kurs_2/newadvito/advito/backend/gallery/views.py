@@ -1,9 +1,12 @@
 import os
 
+from PIL import Image
 from django.shortcuts import render
 from django.db import models
 
 from django.utils import timezone
+
+from kurs_2.newadvito.advito.backend.callboard.models import Advert
 
 
 def get_path_upload_image(file):
@@ -32,14 +35,14 @@ class Photo(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     img = Image.open(self.image.get_path_upload_image())
-    #     super().save(*args, **kwargs)
-    #     # if self.image:
-    #     #     if img.height > 200 or img.width > 200:
-    #     #         output_size = (200, 200)
-    #     #         img.thumbnail(output_size)
-    #     #         img.save(self.avatar.path)
+    def save(self, *args, **kwargs):
+        img = Image.open(self.image.get_path_upload_image())
+        super().save(*args, **kwargs)
+        if self.image:
+            if img.height > 200 or img.width > 200:
+                output_size = (200, 200)
+                img.thumbnail(output_size)
+                img.save(self.avatar.path)
 
     def save(self, *args, **kwargs):
         self.image.name = get_path_upload_image(self.image.name)

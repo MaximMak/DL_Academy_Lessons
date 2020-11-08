@@ -6,6 +6,6 @@ from . import views
 
 urlpatterns = [
     # url('', views.ProfileDetail, name='profiles')
-    path("<int:pk>/", views.ProfileDetail.as_view(), name="profiles-detail")
+    path("profile/", views.ProfileDetail.as_view(), name="profiles-detail")
 ]
 

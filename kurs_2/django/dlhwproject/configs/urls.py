@@ -7,10 +7,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
+    path('', include('backend.advito.urls')),
     path('api-auth/', include('rest_framework.urls')),
-    path('profiles/', include("profiles.profiles.urls")),
-    path('', include('profiles.profiles.urls')),
-
+    path('profiles/', include("backend.profiles.urls")),
 ]
 
 

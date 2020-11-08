@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Список обьявлений
+{% endblock title%}
+
+{% block content %}
+<hr>
+
+    <h2>{{ Profile.subject }}</h2>
+    <p>{{ advert.description }}</p>
+
+    <p>{{ Advert.date }}</p>
+    <p>{{ Advert.filters }}</p>
+    <p>{{ Advert.price }}</p>
+    <p>{{ Advert.created }}</p>
+<hr>
+{% endblock content %}}

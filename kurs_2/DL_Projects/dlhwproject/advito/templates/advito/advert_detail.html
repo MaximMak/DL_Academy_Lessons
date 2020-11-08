@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.description }}</title>
+</head>
+<body>
+<p>{{ advert.date }}</p>
+<p>{{ advert.pub_date }}</p>
+<p><img src="{{ advert.images.url }}" alt="posts img" width="250px"></p>
+<p>{{ advert.description }}</p>
+<p>Likes: {{ advert.get_likes }}</p>
+</body>
+</html>
