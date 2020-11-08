@@ -1,0 +1,9 @@
+{% if advert.author != user %}
+    <h1 class="message">Удаление этого обьявления возможно, только его автором</h1>
+{% else %}
+    <h1 class="message">Вы уверены, что хотите удалить этот пост?</h1>
+    <form method="POST" action="{% url 'advert-delete' post.id %}">
+    {% csrf_token %}
+    <button type="submit">Delet</button>
+</form>
+{% endif %}

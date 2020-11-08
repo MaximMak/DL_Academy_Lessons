@@ -28,13 +28,59 @@
  	</div>
 </header>
 <section>
-	<div>
-    <ul class="breadcrumb">
-      <li><a href="./index.html">Home</a></li>
-      <li>catalog</li>
-    </ul>
-  </div>
-	<section class="category">
+
+<ul class="breadcrumb">
+  <li><a href="./index.html">Home</a></li>
+  <li><a href="./catalog.html">catalog</a></li>
+  <li>toys</li>
+</ul>
+  
+  <secttion class="filters">
+      <p>Cost</p>  
+    <section class="coast">
+      <input type="range" min="0" max="500" step="1" value="500">
+    </section>
+      <p>Colore</p>
+    <section class="colore_choose">
+      <input type="checkbox" id="black_colore" name="black_colore_choose">
+    <label for="black">Black</label>
+    <input type="checkbox" id="blue_colore" name="blue_colore_choose">
+    <label for="black">Blue</label>
+    <input type="checkbox" id="green_colore" name="green_colore_choose">
+    <label for="black">Green</label>
+    <input type="checkbox" id="white_colore" name="white_colore_choose">
+    <label for="black">White</label>
+    </section>
+    
+    <section class="delivery">
+      <p>Delivery</p>
+      <div>
+        <input type="radio" id="fast_shipping" name="fast" value="fast_shipping"
+               checked>
+        <label for="fast_shipping">Fast shipping</label>
+      </div>
+
+      <div>
+        <input type="radio" id="free_shipping" name="free" value="dfree_shipping">
+        <label for="free_shipping">Free shipping</label>
+      </div>
+    </section>
+    
+    {# <section class="amount">
+      <p>amount</p>
+      <ul>
+      <li><a class="" href=""></a></li>
+      <li></li>
+      <li></li>
+      </ul>
+     </section>#}
+    
+    <section class="filter_submit_button">
+      <button type="submit">Apply</button>
+    </section>
+  </secttion>
+	todo>p
+  <section class="toys_items">
 		<h1>Category Products</h1>
 	  	<ul class="prod_category">
 	  		<li class="product_unit"><a href="#"><img src="./img/appparel.png" alt="apparel">
@@ -43,7 +89,7 @@
 	  		<li class="product_unit"><a href="#"><img src="./img/holidays.png" alt="apparel">
 	  		<p class="text_on_img">holiday shop</p></a></li>
 	  		
-	  		<li class="product_unit"><a href="./toys.html"><img src="./img/toys.png" alt="apparel">
+	  		<li class="product_unit"><a href="#"><img src="./img/toys.png" alt="apparel">
 	  		<p class="text_on_img">toys</p></a></li>
 	  		
 	  		<li class="product_unit"><a href="#"><img src="./img/accessories.png" alt="apparel">
