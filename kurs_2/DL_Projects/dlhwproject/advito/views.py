@@ -28,8 +28,8 @@ class AdvertDetail(DetailView):
 
     def get(self, request, advert_id, *args, **kwargs):
         self.object = self.get_object()
-        context = self.get_object(object=self.object)
-        context['coments'] = Comment.object.filter(
+        context = self.get_context_data(object=self.object)
+        context['coments'] = Comment.objects.filter(
             in_advert__pk=advert_id
         ).order_by('-pub_date')
         context['comment_form'] = None
@@ -44,7 +44,8 @@ class AdvertDetail(DetailView):
         if form.is_valid():
             comment = form.save()
             comment.author = request.user
-            comment.in_post = advert
+            comment.in_advert = advert
+            comment.save()
             return render(request, self.template_name, context={
                 'comment_form': self.comment_form,
                 'advert': advert,
@@ -85,7 +86,7 @@ class FeedView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             adverts = Advert.objects.filter(
-                favorite__in=request.Advert.in_favorite.all()
+                favorite__in=request.Advert.objects.in_favorite.all()
             ).order_by('-pub_date')
             context = {
                 'adverts': adverts,
@@ -117,8 +118,8 @@ class AdvertDelete(DeleteView):
     template_name = 'advito/advert_delete.html'
 
     def get_success_url(self):
-        advert_id = self.kwargs['post_id']
-        return reverse('delete-post-success', args=(advert_id, ))
+        advert_id = self.kwargs['advert_id']
+        return reverse('delete-advert-success', args=(advert_id, ))
 
 
 class AdvertLike(View):

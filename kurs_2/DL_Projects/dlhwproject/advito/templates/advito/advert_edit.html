@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% if advert.author != user %}
+    <h2 class="message">Redacting this advert:</h2>
+{% else %}
+    <h2 class="message">Redact th post may authorised users only!</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">Save</button>
+    </form>
+<a href="{% url 'advert-edit' advert.id %}">Edit Advert</a>
+{% endif %}

@@ -43,7 +43,7 @@ class Profile(models.Model):
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(max_length=500)
-    in_post = models.ForeignKey(Advert, on_delete=models.CASCADE)
+    in_advert = models.ForeignKey(Advert, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
