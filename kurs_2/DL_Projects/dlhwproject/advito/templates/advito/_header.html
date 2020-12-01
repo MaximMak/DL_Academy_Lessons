@@ -1,0 +1,11 @@
+<header>
+    <a href="{% url 'index' %}">Home</a>
+    {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="get">
+        {% csrf_token %}
+        <button type="submit"> Logout </button>
+    </form>
+    {% else %}
+        <a href="{% url 'login' %}"> Login </a>
+    {% endif %}
+</header>

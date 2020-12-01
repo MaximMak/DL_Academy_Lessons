@@ -12,6 +12,7 @@ from django.utils.decorators import method_decorator
 
 
 class IndexView(ListView):
+    """ View for main page"""
     model = Advert
     template_name = "advito/index.html"
     context_object_name = 'adverts'
@@ -19,6 +20,13 @@ class IndexView(ListView):
     def get_queryset(self):
         return Advert.objects.annotate(like_num=Count('likes')).order_by('-like_num')[:3]
 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+           'title': 'Main Page'
+        })
+        return context
 
 class AdvertDetail(DetailView):
     model = Advert

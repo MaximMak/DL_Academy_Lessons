@@ -1,13 +1,19 @@
-{% if advert.author != user %}
-    <h1 class="message">Удаление этого обьявления возможно, только его автором</h1>
-{% else %}
-    <h1 class="message">Вы уверены, что хотите удалить этот пост?</h1>
-    <form method="POST" action="{% url 'advert-delete' advert.id %}">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
+{% extends 'advito/layout.html' %}
+
+{% block unique_content %}
+
+    {% if advert.author != user %}
+        <h1 class="message">Удаление этого обьявления возможно, только его автором</h1>
+    {% else %}
+        <h1 class="message">Вы уверены, что хотите удалить этот пост?</h1>
+        <form method="POST" action="{% url 'advert-delete' advert.id %}">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+        </form>
+    <form method="POST" action="{% url 'advert_detail' advert.id %}">
+        {% csrf_token %}
+        <button type="submit">return</button>
     </form>
-<form method="POST" action="{% url 'advert_detail' advert.id %}">
-    {% csrf_token %}
-    <button type="submit">return</button>
-</form>
-{% endif %}
+    {% endif %}
+
+{% endblock unique_content %}

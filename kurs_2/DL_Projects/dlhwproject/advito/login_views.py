@@ -21,7 +21,7 @@ class LoginView(LoginView):
 
             if user is not None:
                 login(request, user)
-                return redirect(reverse('advito:index'), request)
+                return redirect(reverse('index'), request)
             else:
                 context = {
                     'form': form

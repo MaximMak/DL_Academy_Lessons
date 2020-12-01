@@ -1,19 +1,26 @@
-{% if advert.author != user %}
-    <h2 class="message">Redact th post may authorised users only!</h2>
-{% else %}
-    <h2 class="message">Redacting this advert: advert.id</h2>
+{% extends 'advito/layout.html' %}
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
 
-<form method="get" action="{% url 'advert_detail' advert.id %}">
-    {% csrf_token %}
-    <button type="submit">Back</button>
-</form>
+{% block unique_content %}
 
-<a href="{% url 'advert-delete' advert.id %}">Delete Advert</a>
+    {% if advert.author != user %}
+        <h2 class="message">Redact th post may authorised users only!</h2>
+    {% else %}
+        <h2 class="message">Redacting this advert: advert.id</h2>
 
-{% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+
+    <form method="get" action="{% url 'advert_detail' advert.id %}">
+        {% csrf_token %}
+        <button type="submit">Back</button>
+    </form>
+
+    <a href="{% url 'advert-delete' advert.id %}">Delete Advert</a>
+
+    {% endif %}
+
+{% endblock unique_content %}
