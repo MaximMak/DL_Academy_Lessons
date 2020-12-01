@@ -6,4 +6,8 @@
     {% csrf_token %}
     <button type="submit">Delete</button>
     </form>
+<form method="POST" action="{% url 'advert_detail' advert.id %}">
+    {% csrf_token %}
+    <button type="submit">return</button>
+</form>
 {% endif %}

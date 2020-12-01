@@ -10,5 +10,15 @@
     <p><img src="{{ advert.images.url }}" alt="posts img" width="250px"></p>
     <p>{{ advert.description }}</p>
     <p>Likes: {{ advert.get_likes }}</p>
+
+{% if advert.author == user %}
+    <h2 class="message">Redacting this advert:</h2>
+    <form method="get" action="{% url 'advert-edit' advert.id %}">
+        {% csrf_token %}
+        <button type="submit">Redact</button>
+    </form>
+<a href="{% url 'advert-delete' advert.id %}">Delete Advert</a>
+{% endif %}
+<a href="{% url 'Index' %}">Home</a>
 </body>
 </html>

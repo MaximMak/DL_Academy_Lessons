@@ -1,8 +1,19 @@
+@import url(./header.css);
+/*импортируем css свойства для шапки сайта*/
+@import url(./footer.css);
+/*импортируем свойства для подвала*/
+
 
 .index_all {
+	display: block;
 	background-color: #E5E5E5;
 	widows: 1400 px;
 	margin: 0 auto;
+}
+.nav_bar {
+	display: flex;
+	width: 1180px;
+	height: 60px;
 }
 .main_slider_img {
 	width: 635px;
@@ -13,4 +24,29 @@
 	height: 559px;
 	left: 110px;
 	top: 1243px;
+}
+
+.breadcrumb {
+}
+.filters {
+}
+.coast {
+}
+.colore_choose {
+}
+.delivery {
+}
+.amount {
+}
+.filter_submit_button {
+}
+.toys_items {
+}
+.prod_category {
+}
+.product_unit {
+}
+.text_on_img {
+}
+.description {
 }

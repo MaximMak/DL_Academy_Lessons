@@ -11,6 +11,6 @@ urlpatterns = [
     path('adverts/<int:advert_id>/', views.AdvertDetail.as_view(), name='advert_detail'),
     path('adverts/<int:advert_id>/edit/', views.EditAdvert.as_view(), name='advert-edit'),
     path('adverts/<int:advert_id>/delete/', views.AdvertDelete.as_view(), name='advert-delete'),
-    path('adverts/<int:advert_id>/delete_success/', TemplateView.as_view(template_name='advert/delete_success.html'), name='delete-advert-success'),
-    path('adverts/<int:advert_id>/like/', views.AdvertLike.as_view, name='advert_like'),
+    path('adverts/<int:advert_id>/delete_success/', TemplateView.as_view(template_name='advito/delete_success.html'), name='delete-advert-success'),
+    path('adverts/<int:advert_id>/like/', views.AdvertLike.as_view(), name='advert_like'),
 ]

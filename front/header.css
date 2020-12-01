@@ -1,0 +1,14 @@
+.nav_bar {
+	display: flex;
+	width: 1180px;
+	height: 60px;
+}
+
+.logo {
+}
+.nav_bar li {
+	list-style-type: none;
+}
+
+.search {
+}

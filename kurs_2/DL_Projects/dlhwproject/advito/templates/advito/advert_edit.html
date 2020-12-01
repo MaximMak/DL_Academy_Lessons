@@ -1,11 +1,19 @@
 {% if advert.author != user %}
-    <h2 class="message">Redacting this advert:</h2>
-{% else %}
     <h2 class="message">Redact th post may authorised users only!</h2>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
+{% else %}
+    <h2 class="message">Redacting this advert: advert.id</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
     <button type="submit">Save</button>
-    </form>
-<a href="{% url 'advert-edit' advert.id %}">Edit Advert</a>
+</form>
+
+<form method="get" action="{% url 'advert_detail' advert.id %}">
+    {% csrf_token %}
+    <button type="submit">Back</button>
+</form>
+
+<a href="{% url 'advert-delete' advert.id %}">Delete Advert</a>
+
 {% endif %}

@@ -100,6 +100,7 @@ class EditAdvert(UpdateView):
     model = Advert
     pk_url_kwarg = 'advert_id'
     template_name = 'advito/advert_edit.html'
+    form_class = AdvertForm
 
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
@@ -135,4 +136,4 @@ class AdvertLike(View):
         else:
             advert.likes.add(request.user)
             advert.save()
-            return redirect(request.META.get('HTTP_REFERER'), request)
+        return redirect(request.META.get('HTTP_REFERER'), request)
