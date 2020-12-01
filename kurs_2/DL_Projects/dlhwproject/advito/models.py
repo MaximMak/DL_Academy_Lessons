@@ -4,14 +4,17 @@ from django.utils import timezone
 
 
 def avatar_path(instance, filename):
+    """формируем путь для фотографии аватара"""
     return 'user{0}/avatar{1}'.format(instance.user.id, filename)
 
 
 def advert_path(instance, filename):
+    """формируем путь для фотографии фото в обьявлениях"""
     return 'user{0}/advert{1}'.format(instance.user.id, filename)
 
 
 class Advert(models.Model):
+    """Модель для обьявлений"""
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(max_length=1000, blank=True)
     images = models.ImageField(upload_to='advert_path/')
@@ -30,6 +33,7 @@ class Advert(models.Model):
 
 
 class Profile(models.Model):
+    """Модель для профиля пользователя"""
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_profile')
     birth_date = models.DateField('date_of_birth', blank=True, null=True)
     about = models.TextField('about', max_length=500, blank=True)
@@ -41,6 +45,7 @@ class Profile(models.Model):
 
 
 class Comment(models.Model):
+    """Модель для коментария"""
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(max_length=500)
     in_advert = models.ForeignKey(Advert, on_delete=models.CASCADE)

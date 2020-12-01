@@ -1,0 +1,27 @@
+<article>
+    {% if form.errors %}
+        {% for field, error in form.errors.items %}
+        <p> {{ errors }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <h3>Войти</h3>
+    {% if not user.is_authenticated %}
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        <div>
+            <p>
+                {{ field }}
+            </p>
+        </div>
+        {% endfor %}
+        <button type="submit">
+            Войти
+        </button>
+    </form>
+    {% else %}
+    <h3>Hello {{ user.username }}</h3>
+    <a href="{% url  'index' %}">На главную</a>
+    {% endif %}
+</article>
