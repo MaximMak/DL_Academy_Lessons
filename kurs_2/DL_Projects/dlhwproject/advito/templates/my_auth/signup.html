@@ -1,3 +1,9 @@
+
+{% extends 'advito/layout.html' %}
+
+
+{% block unique_content %}
+
 <article>
     <h3>Registration</h3>
     <hr>
@@ -15,3 +21,5 @@
         <a href="{% url 'login' %}"> Войти </a>
     {% endif %}
 </article>
+
+{% endblock unique_content %}

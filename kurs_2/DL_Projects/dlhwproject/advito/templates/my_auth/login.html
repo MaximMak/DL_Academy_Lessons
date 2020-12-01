@@ -1,3 +1,9 @@
+
+{% extends 'advito/layout.html' %}
+
+
+{% block unique_content %}
+
 <article>
     {% if form.errors %}
         {% for field, error in form.errors.items %}
@@ -25,3 +31,5 @@
     <a href="{% url  'index' %}">На главную</a>
     {% endif %}
 </article>
+
+{% endblock unique_content %}
