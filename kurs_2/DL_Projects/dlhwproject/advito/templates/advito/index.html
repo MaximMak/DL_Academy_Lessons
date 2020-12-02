@@ -8,12 +8,14 @@
     <ul>
         {% for advert in adverts %}
         <li>
-            <a href="{% url 'advert_detail' advert.id %}">
-                <p>{{ advert.author }}</p>
+
+            <a href="{% url 'profile' advert.author.id %}">{{ advert.author }}</a>
                 <p>{{ advert.pub_date }}</p>
+            <a href="{% url 'advert_detail' advert.id %}">
                 <p><img src="{{ advert.images.url }}" alt="posts img" width="250px"></p>
-                <p>{{ advert.description }}</p>
             </a>
+                <p>{{ advert.description }}</p>
+
             <p>Likes: {{ advert.likes.count }}</p>
             <form method="post" action="{% url 'advert_like' advert.id %}">
                 {% csrf_token %}

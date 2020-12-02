@@ -1,8 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
-from django.shortcuts import redirect, render
-from django.views.generic import View
+from django.shortcuts import redirect, render, get_object_or_404
+from django.views.generic import View, DetailView
 from django.urls import reverse
+
+from.models import Profile
 
 from .forms import LoginForm, SignUpForm
 from django.contrib.auth import authenticate, login, logout
@@ -65,3 +67,11 @@ class SignUpView(View):
 def logout_view(request):
     logout(request)
     return redirect(reverse('index'))
+
+
+class ProfileView(DetailView):
+    model = Profile
+    template_name = 'my_auth/profile.html'
+
+    def get_object(self):
+        return get_object_or_404(Profile, user__id=self.kwargs['user_id'])
