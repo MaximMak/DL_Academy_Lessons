@@ -1,7 +1,7 @@
 from django import forms
 from .models import Advert, Comment, User
 from django.contrib.auth.forms import (
-    AuthenticationForm, UsernameField, UserCreationForm
+    AuthenticationForm, UsernameField, UserCreationForm, UserChangeForm
 )
 
 
@@ -35,53 +35,49 @@ class SignUpForm(UserCreationForm):
         }
 
 
-class ProfileUpdate(forms.ModelForm):
-    username = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
-
-    # class Meta:
-    #     class Meta:
-    #         model = User
-    #         fields = ('username', 'email', 'first_name', 'last_name')
-    #         widgets = {
-    #             'username': forms.TextInput(attrs={
-    #                 'class': 'form-control', 'placeholder': 'Username'
-    #             }),
-    #             'email': forms.EmailInput(attrs={
-    #                 'class': 'form-control', 'placeholder': 'Email', 'autofocus': True
-    #             }),
-    #             'first_name': forms.TextInput(attrs={
-    #                 'class': 'form-control', 'placeholder': 'First-name'
-    #             }),
-    #             'last_name': forms.TextInput(attrs={
-    #                 'class': 'form-control', 'placeholder': 'last-name'
-    #             })
-    #         }
+class UpdateProfile(forms.ModelForm):
 
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')
+        widgets = {
+            'username': forms.TextInput(attrs={
+                'class': 'profile_Names', 'placeholder': 'Username', 'autofocus': True
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'profile_email', 'placeholder': 'Email'
+            }),
+            'first_name': forms.TextInput(attrs={
+                'class': 'profile_Names', 'placeholder': 'first_name'
+            }),
+            'last_name': forms.TextInput(attrs={
+                'class': 'profile_Names', 'placeholder': 'last_name'
+            }),
+            'About': forms.Textarea(attrs={
+            'class': 'profile_about textarea', 'placeholder': 'last_name'
+        })
+        }
 
     def clean_email(self):
         username = self.cleaned_data.get('username')
         email = self.cleaned_data.get('email')
+        last_name = self.cleaned_data.get('last_name')
+        first_name = self.cleaned_data.get('first_name')
+        about = self.cleaned_data.get('about')
+
 
         if email and User.objects.filter(email=email).exclude(username=username).count():
-            raise forms.ValidationError(
-                'This email address is already in use. Please supply a different email address.')
+            raise forms.ValidationError('This email address is already in use. Please supply a different email address.')
         return email
 
     def save(self, commit=True):
-        user = super(RegistrationForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
+        profile = super(UserChangeForm, self).save(commit=False)
+        profile.email = self.cleaned_data['email']
 
         if commit:
-            user.save()
+            profile.save()
 
-        return user
-
+        return profile
 
 class LoginForm(AuthenticationForm):
     username = UsernameField(widget=forms.TextInput(

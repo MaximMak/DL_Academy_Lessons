@@ -6,7 +6,7 @@ from django.urls import reverse
 
 from.models import Profile
 
-from .forms import LoginForm, SignUpForm, ProfileUpdate
+from .forms import LoginForm, SignUpForm, UpdateProfile
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -78,7 +78,7 @@ class ProfileView(DetailView):
 
 class UpdateProfileView(View):
     template_name = 'my_auth/update_profile.html'
-    update_form = ProfileUpdate
+    update_form = UpdateProfile
 
     def get(self, request, *args, **kwargs):
         context = {
