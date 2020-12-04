@@ -93,9 +93,7 @@ class FeedView(View):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            adverts = Advert.objects.filter(
-                favorite__in=request.user.in_favorite.all()
-            ).order_by('-pub_date')
+            adverts = request.user.favorite.all()
             context = {
                 'adverts': adverts,
             }

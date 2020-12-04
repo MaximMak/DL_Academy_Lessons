@@ -7,6 +7,7 @@ from django.contrib.auth.views import (
 
 from django.views.generic import TemplateView
 
+from .login_views import UpdateProfileView
 from . import views, login_views
 
 urlpatterns = [
@@ -27,6 +28,7 @@ urlpatterns = [
     path('logout/', login_views.logout_view, name='logout'),
     path('registration/', login_views.SignUpView.as_view(), name='register'),
     path('profile/<int:user_id>/', login_views.ProfileView.as_view(), name='profile'),
+    # path('update_profile/', UpdateProfileView.as_view(), name='update_profile'),
 
     path('password-reset/', PasswordResetView.as_view(
         success_url=reverse_lazy('password_reset_done'), template_name='my_auth/pass-reset.html'

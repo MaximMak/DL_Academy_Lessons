@@ -6,7 +6,7 @@ from django.urls import reverse
 
 from.models import Profile
 
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm, SignUpForm, ProfileUpdate
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -75,3 +75,28 @@ class ProfileView(DetailView):
 
     def get_object(self):
         return get_object_or_404(Profile, user__id=self.kwargs['user_id'])
+
+class UpdateProfileView(View):
+    template_name = 'my_auth/update_profile.html'
+    update_form = ProfileUpdate
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'form': self.update_form
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        UpPf_form = self.update_form(data=request.POST)
+        if UpPf_form.is_valid():
+            user = UpPf_form.save(commit=False)
+            user.email = UpPf_form.cleaned_data['email']
+            user.first_name = UpPf_form.cleaned_data['first_name']
+            user.email = UpPf_form.cleaned_data['last_name']
+            user.save()
+            registered = True
+            return render(request, self.template_name, {'registered': registered})
+        else:
+            return render(
+                request, self.template_name, {
+                    'form': UpPf_form})

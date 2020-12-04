@@ -38,6 +38,8 @@ class Profile(models.Model):
     birth_date = models.DateField('date_of_birth', blank=True, null=True)
     about = models.TextField('about', max_length=500, blank=True)
     avatar = models.ImageField(upload_to='avatar_path/', default=None)
+    first_name = models.TextField('first_name', max_length=50, blank=True)
+    last_name = models.TextField('last_name', max_length=50, blank=True)
     favorite = models.ManyToManyField(Advert, related_name='favorite', blank=True)
 
     def __str__(self):

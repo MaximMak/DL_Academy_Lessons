@@ -15,12 +15,13 @@
                 <p><img src="{{ advert.images.url }}" alt="posts img" width="250px"></p>
             </a>
                 <p>{{ advert.description }}</p>
-
+            {% if user.is_authenticated %}
             <p>Likes: {{ advert.likes.count }}</p>
             <form method="post" action="{% url 'advert_like' advert.id %}">
                 {% csrf_token %}
                 <button type="submit">Like</button>
             </form>
+            {% endif %}
         </li>
         {% endfor adverts %}
     </ul>

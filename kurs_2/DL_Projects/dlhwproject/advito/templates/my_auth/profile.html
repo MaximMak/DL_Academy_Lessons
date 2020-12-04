@@ -8,6 +8,12 @@
     {% endif %}
     {{ profile.about }}
 </div>
+<span>
+    <a href="{% url 'feed' %}">Моё избранное</a>
+</span>
+<span>
+    <a href="{% url 'update_profile' %}"> Update </a>
+</span>
     
     {% endblock unique_content%}
 
