@@ -12,7 +12,7 @@ from django.utils.decorators import method_decorator
 
 
 class IndexView(ListView):
-    """ View for main page"""
+    """ Главная страница """
     model = Advert
     template_name = "advito/index.html"
     context_object_name = 'adverts'
@@ -29,6 +29,7 @@ class IndexView(ListView):
         return context
 
 class AdvertDetail(DetailView):
+    """" Детальная информация о объявлении """
     model = Advert
     comment_form = CommentForm
     pk_url_kwarg = 'advert_id'
@@ -47,6 +48,7 @@ class AdvertDetail(DetailView):
 
     @method_decorator(login_required)
     def post(self, request, advert_id, *args, **kwargs):
+        """ проверка на авторизацию, если пользователь авторизован дает возможность добавлять коментарии """
         advert = get_object_or_404(Advert, id=advert_id)
         form = self.comment_form(request.POST)
         if form.is_valid():
@@ -68,6 +70,7 @@ class AdvertDetail(DetailView):
 
 
 class AdvertCreateView(CreateView):
+    """ Создание нового объявления """
     form_class = AdvertForm
     template_name = 'advito/advert_create.html'
 
@@ -77,6 +80,7 @@ class AdvertCreateView(CreateView):
         context = {}
         if form.is_valid():
             advert = form.save(commit=False)
+            author_id = request.user.id
             advert.author = request.user
             advert.save()
             context['Advert was created'] = True
@@ -89,6 +93,8 @@ class AdvertCreateView(CreateView):
 
 
 class FeedView(View):
+    """ Страница избранных обьявлений с фильрацие по популярности.
+    Чем больше лайков, тем выше обьявление в списке"""
     template_name = "advito/feed.html"
 
     def get(self, request, *args, **kwargs):
@@ -103,6 +109,7 @@ class FeedView(View):
 
 
 class EditAdvert(UpdateView):
+    """ Внесение изменений (редактирование) объявления """
     model = Advert
     pk_url_kwarg = 'advert_id'
     template_name = 'advito/advert_edit.html'
@@ -120,6 +127,7 @@ class EditAdvert(UpdateView):
 
 
 class AdvertDelete(DeleteView):
+    """ Удаление обьявления """
     model = Advert
     pk_url_kwarg = 'advert_id'
     template_name = 'advito/advert_delete.html'
@@ -130,6 +138,7 @@ class AdvertDelete(DeleteView):
 
 
 class AdvertLike(View):
+    """ Представление пометки обьявления, что оно понравилось (ставим лайк на обьявление)"""
     def get(self, request, advert_id, *args, **kwargs):
         return redirect(reverse('advert', args=(advert_id, )))
 

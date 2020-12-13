@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 
 
 class LoginView(LoginView):
+    """ Представление авторизации пользователя на сайте """
     template_name = 'my_auth/login.html'
     form_class = LoginForm
 
@@ -37,6 +38,7 @@ class LoginView(LoginView):
 
 
 class SignUpView(View):
+    """ Представление создания нового пользователя на сайте"""
     template_name = 'my_auth/signup.html'
     registration_form = SignUpForm
 
@@ -47,6 +49,7 @@ class SignUpView(View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
+        """ функция проверк формы на соответствие (валидность) и последующее сохранения в случае соответствия """
         user_form = self.registration_form(data=request.POST)
         registered = False
         if user_form.is_valid():
@@ -70,23 +73,28 @@ def logout_view(request):
 
 
 class ProfileView(DetailView):
+    """ представление детального вида профиля"""
     model = Profile
     template_name = 'my_auth/profile.html'
 
     def get_object(self):
+        """ вывод ошибки в случае отсутствия профиля """
         return get_object_or_404(Profile, user__id=self.kwargs['user_id'])
 
 class UpdateProfileView(View):
+    """ представения для изменения профиля пользователя """
     template_name = 'my_auth/update_profile.html'
     update_form = UpdateProfile
 
     def get(self, request, *args, **kwargs):
+        """ функция сохренения формы"""
         context = {
             'form': self.update_form
         }
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
+        """ функция проверк формы на соответствие (валидность) и последующее сохранения в случае соответствия """
         UpPf_form = self.update_form(data=request.POST)
         if UpPf_form.is_valid():
             user = UpPf_form.save(commit=False)
@@ -97,6 +105,7 @@ class UpdateProfileView(View):
             registered = True
             return render(request, self.template_name, {'registered': registered})
         else:
+            """ Возврат к ввобу формы в случае не соответствия формы (если не валидна)"""
             return render(
                 request, self.template_name, {
                     'form': UpPf_form})
